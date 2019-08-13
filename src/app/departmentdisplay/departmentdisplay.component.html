@@ -1,0 +1,70 @@
+<h1 class='bg bg-light'>DEPARTMENT</h1>
+<h3>Search Here</h3><input placeholder="Search Here" name="n1" #f type="text" (keyup)="search(f.value)">
+  <div class='container'>
+    <button class="btn btn-lg btn-warning text-white float-right" (click)="open(content,'Add','')">Add new Department</button>
+  </div>
+
+<table class="table">
+  <thead>
+    <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of arr; let i=index">
+      <td >{{item.name }}</td>
+      <td  >{{item.description}}</td>
+     <td>
+        <button  type="button"  class="btn btn-default" aria-label="Left Align" (click)="openEdit(content,i)">Edit</button>|
+        <button  type="button"  class="btn btn-default" aria-label="Left Align" (click)="onClickDelete(item)">Delete</button>
+     </td>
+    </tr>
+  </tbody>
+  </table>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Edit/Add Department</h4>
+    <button type="button" class="close bg bg-danger" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">Close</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #f="ngForm">
+      <table>
+        <tr>
+          <td>
+            <div class="form-group">
+        <label for="name">Department Name</label>
+        <div class="input-group">
+          <input id="name" class="form-control" [(ngModel)]="name" class="form-control" placeholder="Department Name" name="name">
+          <div class="input-group-append">
+           </div>
+        </div>
+      </div>
+      </td>
+
+      <td>
+      <div class="form-group ">
+        <label for="description">Description</label>
+        <div class="input-group">
+          <input id="description" class="form-control" [(ngModel)]="description" class="form-control" placeholder="Description" name="description">
+          <div class="input-group-append">
+          </div>
+        </div>
+      </div>
+      </td>
+      </tr>
+    </table>
+
+
+   <div class="modal-footer">
+      <button type="reset" class="btn btn-success" aria-label="cancel" (click)="onClickAdd()">add</button>
+      <button type="submit" class="btn btn-success" (click)='UpdateItem()'>update</button>
+      <button type="reset" class="btn btn-danger" aria-label="cancel" (click)="modal.dismiss('Cross click')">cancel</button>
+      </div>
+      </form>
+      </div>
+ </ng-template>
